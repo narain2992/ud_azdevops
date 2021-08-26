@@ -31,7 +31,7 @@ To verify if the policy has been assigned, run the following command
 az policy assignment list
 ```
 
-### Build and Deploy a Server image
+### Build a Server image
 - Get the environment variables from the Azure portal - CLIENT_ID, CLIENT_SECRET, SUBSCRIPTION_ID and populate the variables section of the server.json.
 - Ensure that the builders and provisioners are configured properly.
 
@@ -39,10 +39,24 @@ az policy assignment list
 ```
 packer build server.json
 ```
+### Deploy the infrastructure resource
+- Ensure that the node_count variable is configured in variables.tf
 
-### Create the infrastructure resource
-- Ensure that the count variable is configured in variables.tf
+#### Plan the infrastructure
+```
+terraform plan -out solution.plan
+```
+#### Provision the infrastructure resource
+```
+terraform apply "solution.plan"
+```
 
+##### ** Destroy the resource
+
+- Destroy the resource if you do not require it.
+```
+terraform destroy
+```
 
 
   
