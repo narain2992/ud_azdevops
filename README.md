@@ -6,9 +6,9 @@ In this project we will deploy a scalable web server in Azure platform using pac
 
 ## Pre-requisites
 1. Create an Azure account
-2. Install the Azure CLI
-3. Install Packer
-4. Install Terraform
+2. Install the latest version of Azure CLI
+3. Install the latest version of Packer
+4. Install the latest version of Terraform
 
 ## Steps
 - Create a policy to deny resources without a tag from being created and assign it to the subscription.
@@ -25,12 +25,23 @@ Assign the policy definition:
 ```
 az policy assignment create --policy tagging-policy --name tagging-policy
 ```
-### Build and Deploy the packer image
-Get the environment variables from the Azure portal - CLIENT_ID, CLIENT_SECRET, SUBSCRIPTION_ID and build image using the packer template
+
+To verify if the policy has been assigned, run the following command
+```
+az policy assignment list
+```
+
+### Build and Deploy a Server image
+- Get the environment variables from the Azure portal - CLIENT_ID, CLIENT_SECRET, SUBSCRIPTION_ID and populate the variables section of the server.json.
+- Ensure that the builders and provisioners are configured properly.
+
+#### Build image using the packer template
 ```
 packer build server.json
 ```
 
+### Create the infrastructure resource
+- Ensure that the count variable is configured in variables.tf
 
 
 
