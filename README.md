@@ -40,7 +40,7 @@ az policy assignment list
 packer build server.json
 ```
 ### Deploy the infrastructure resource
-- Ensure that the node_count variable is configured in variables.tf
+- Ensure that all the variables including node_count and location are configured in variables.tf
 
 #### Plan the infrastructure
 ```
