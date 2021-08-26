@@ -11,6 +11,9 @@ In this project we will deploy a scalable web server in Azure platform using pac
 4. Install Terraform
 
 ## Steps
+- Create a policy to deny resources without a tag from being created and assign it to the subscription.
+- Using packer, create a virtual machine template
+- Using terraform, provision the resources:
 
 ### Create and assign the tagging policy
 
@@ -22,14 +25,13 @@ Assign the policy definition:
 ```
 az policy assignment create --policy tagging-policy --name tagging-policy
 ```
-### Deploy the packer image
+### Build and Deploy the packer image
+Get the environment variables from the Azure portal - CLIENT_ID, CLIENT_SECRET, SUBSCRIPTION_ID and build image using the packer template
+```
+packer build server.json
+```
 
-The following tasks are performed:
 
-- Create a policy to deny resources without a tag from being created and assign it to the subscription.
-- Using packer, create a virtual machine template
-- Using terraform, provision the following resources:
-  - Availability set
 
 
   
